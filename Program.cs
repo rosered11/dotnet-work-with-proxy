@@ -18,6 +18,7 @@ namespace Client.With.Proxy.Demo
             var host =
                 new WebHostBuilder()
                     .UseConfiguration(configuration)
+                    .UseUrls("http://*:$PORT")
                     .UseKestrel()
                     .UseContentRoot(Directory.GetCurrentDirectory())
                     .UseIISIntegration()
