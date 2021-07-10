@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using System;
 using System.IO;
 
 namespace Client.With.Proxy.Demo
@@ -9,6 +10,7 @@ namespace Client.With.Proxy.Demo
     {
         public static void Main(string[] args)
         {
+            var port = Environment.GetEnvironmentVariable("PORT");
             var configuration =
             new ConfigurationBuilder()
                 .AddEnvironmentVariables("MY_ASPNETCORE_")
@@ -18,11 +20,11 @@ namespace Client.With.Proxy.Demo
             var host =
                 new WebHostBuilder()
                     .UseConfiguration(configuration)
-                    .UseUrls("http://*:$PORT")
                     .UseKestrel()
                     .UseContentRoot(Directory.GetCurrentDirectory())
                     .UseIISIntegration()
                     .UseStartup<Startup>()
+                    .UseUrls($"http://*:{port}")
                     .Build();
             host.Run();
         }
