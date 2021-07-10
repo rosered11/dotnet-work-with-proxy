@@ -10,7 +10,7 @@ namespace Client.With.Proxy.Demo
     {
         public static void Main(string[] args)
         {
-            var port = Environment.GetEnvironmentVariable("PORT");
+            string port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
             var configuration =
             new ConfigurationBuilder()
                 .AddEnvironmentVariables("MY_ASPNETCORE_")
