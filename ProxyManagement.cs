@@ -10,6 +10,7 @@ namespace Client.With.Proxy.Demo
 {
     public static class ProxyManagement
     {
+        public static List<string> ignore = new List<string> { "" };
         public static void ConfigWithProxy(this IApplicationBuilder app, IConfiguration configuration)
         {
             // First pipeline
